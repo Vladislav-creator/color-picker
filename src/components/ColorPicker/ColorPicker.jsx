@@ -1,65 +1,72 @@
-import React, { Component } from 'react'
-import styles from './ColorPicker.module.css'
+import React, { Component } from 'react';
+import styles from './ColorPicker.module.css';
 export class ColorPicker extends Component {
-    state = {
-        activeOptionIdx: 0,
-        arrayChoiseColorPicker: [],
-    }
-    // getArrayWithIniqValue=(arrayNumbers)=>new Set(arrayNumbers)
-     setActiveIdx = index => {
-         this.setState({ activeOptionIdx: index });
+  state = {
+    activeOptionIdx: 0,
+    arrayChoiseColorPicker: [],
+  };
 
-      //    this.setState(prevState => ({
-      //     activeOptionIdx: index,
-      //     arrayChoiseColorPicker: [prevState.arrayChoiseColorPicker, ...index],
-      //   }));
-      // };
-      // this.setState(({ arrayChoiseColorPicker }) => {
-      //   return { arrayChoiseColorPicker: [index, ...arrayChoiseColorPicker] };
-      // });
-    }
-     
-    makeOptionClassName = index => {
-        return index === this.state.activeOptionIdx
-            ? styles.activeOption
-            : styles.option;
-        }
-       
+  getArrayWithIniqValue = arrayNumbers => [...new Set(arrayNumbers)];
+
+  setActiveIdx = index => {
+    this.setState(prevState => {
+      return {
+        activeOptionIdx: index,
+        arrayChoiseColorPicker: [
+          ...this.getArrayWithIniqValue([
+            ...prevState.arrayChoiseColorPicker,
+            index,
+          ]),
+        ],
+      };
+    });
+  };
+
+  makeOptionClassName = index => {
+    return index === this.state.activeOptionIdx
+      ? styles.activeOption
+      : styles.option;
+  };
+
   render() {
-    const {activeOptionIdx} = this.state;
-    const {options} = this.props;
-    const {label} = options[activeOptionIdx];
-    const {color} = options[activeOptionIdx];
+    const { activeOptionIdx } = this.state;
+    const { options } = this.props;
+    const { label } = options[activeOptionIdx];
+    const { color } = options[activeOptionIdx];
     return (
       <div>
-      <div className={styles.container}>
-      <h2 className={styles.title}>ColorPicker-Class</h2>
-      <p>Выбран цвет: <span className={styles.span} style={{ color: color }}>{label}</span> </p>
-      
-      <div>
-      {options.map(({ label, color }, index)=>(
-        
-            <button 
-            key={label}
-            aria-label={label}
-            className={this.makeOptionClassName(index)}
-            style={{ backgroundColor: color }}
-            onClick = {()=> this.setActiveIdx(index)}
-            ></button>
-        ))}
-      </div>
-      </div>
-      <div className={styles.container}>
-      <button 
-            key={label}
-            aria-label={label}
-            className={styles.option}
-            style={{ backgroundColor: color }}
-            ></button>
-      </div>
-      </div>
+        <div className={styles.container}>
+          <h2 className={styles.title}>ColorPicker-Class</h2>
+          <p>
+            Выбран цвет:{' '}
+            <span className={styles.span} style={{ color: color }}>
+              {label}
+            </span>{' '}
+          </p>
 
-     
-    )
+          <div>
+            {options.map(({ label, color }, index) => (
+              <button
+                key={label}
+                aria-label={label}
+                className={this.makeOptionClassName(index)}
+                style={{ backgroundColor: color }}
+                onClick={() => this.setActiveIdx(index)}
+              ></button>
+            ))}
+          </div>
+        </div>
+        <div className={styles.container1}>
+          {this.state.arrayChoiseColorPicker.map(( index) => (
+            <button
+              key={options[index].label}
+              aria-label={options[index].label}
+              className={styles.option}
+              style={{ backgroundColor: options[index].color }}
+            ></button>
+          ))}
+        </div>
+      </div>
+    );
   }
 }

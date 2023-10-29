@@ -8,6 +8,15 @@
   justify-content: center;
   border-radius: 10px;
 }
+.container1{
+    width: 480px;
+    padding: 10px;
+    border: 1px solid black;
+    display: flex;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+}
 .title {
     line-height: 1.3;
 }
