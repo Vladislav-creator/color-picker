@@ -3,9 +3,15 @@ import styles from './ColorPicker.module.css'
 export class ColorPicker extends Component {
     state = {
         activeOptionIdx: 0,
+        arrayChoiseColorPicker: [],
     }
      setActiveIdx = index => {
         this.setState({ activeOptionIdx: index });
+      
+      //   this.setState(prevState => ({
+      //     contacts: [{ ...index }, ...prevState.arrayChoiseColorPicker],
+      //   }));
+      // };
      }
     makeOptionClassName = index => {
         return index === this.state.activeOptionIdx
@@ -19,10 +25,11 @@ export class ColorPicker extends Component {
     const {label} = options[activeOptionIdx];
     const {color} = options[activeOptionIdx];
     return (
-
+      <div>
       <div className={styles.container}>
       <h2 className={styles.title}>ColorPicker-Class</h2>
       <p>Выбран цвет: <span className={styles.span} style={{ color: color }}>{label}</span> </p>
+      
       <div>
       {options.map(({ label, color }, index)=>(
         
@@ -36,6 +43,17 @@ export class ColorPicker extends Component {
         ))}
       </div>
       </div>
+      <div className={styles.container}>
+      <button 
+            key={label}
+            aria-label={label}
+            className={styles.option}
+            style={{ backgroundColor: color }}
+            ></button>
+      </div>
+      </div>
+
+     
     )
   }
 }
