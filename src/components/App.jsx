@@ -9,6 +9,8 @@ const colorPickerOptions = [
   { label: "indigo", color: "indigo"},
   { label: "orange", color: "orange"},
   { label: "lime", color: "lime"},
+  { label: "yellow", color: "yellow"},
+  { label: "tomato", color: "tomato"},
 ]
 export const App = () => {
   return (
