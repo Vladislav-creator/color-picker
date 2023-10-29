@@ -33,10 +33,6 @@ export class ColorPicker extends Component {
   }
 
 
-
-
-
-
   getArrayWithIniqValue = arrayNumbers => [...new Set(arrayNumbers)];
 
   setActiveIdx = index => {
