@@ -5,15 +5,19 @@ export class ColorPicker extends Component {
         activeOptionIdx: 0,
         arrayChoiseColorPicker: [],
     }
-    getArrayWithIniqValue=(arrayNumbers)=>new Set(arrayNumbers)
+    // getArrayWithIniqValue=(arrayNumbers)=>new Set(arrayNumbers)
      setActiveIdx = index => {
-        // this.setState({ activeOptionIdx: index });
+         this.setState({ activeOptionIdx: index });
 
-         this.setState(prevState => ({
-          activeOptionIdx: index,
-          arrayChoiseColorPicker: this.getArrayWithIniqValue([...prevState.arrayChoiseColorPicker, ...index]),
-        }));
-      };
+      //    this.setState(prevState => ({
+      //     activeOptionIdx: index,
+      //     arrayChoiseColorPicker: [prevState.arrayChoiseColorPicker, ...index],
+      //   }));
+      // };
+      // this.setState(({ arrayChoiseColorPicker }) => {
+      //   return { arrayChoiseColorPicker: [index, ...arrayChoiseColorPicker] };
+      // });
+    }
      
     makeOptionClassName = index => {
         return index === this.state.activeOptionIdx
