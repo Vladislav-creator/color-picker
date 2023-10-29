@@ -56,6 +56,8 @@ export class ColorPicker extends Component {
             ))}
           </div>
         </div>
+        <div className={styles.container}>
+          <h2 className={styles.title}>Choise ColorPicker</h2>
         <div className={styles.container1}>
           {this.state.arrayChoiseColorPicker.map(( index) => (
             <button
@@ -66,6 +68,7 @@ export class ColorPicker extends Component {
             ></button>
           ))}
         </div>
+      </div>
       </div>
     );
   }
