@@ -12,14 +12,23 @@ export class ColorPicker extends Component {
     if (parsedColorPicker) {
       this.setState({ arrayChoiseColorPicker: parsedColorPicker });
     }
+    const activeOptionIdx = localStorage.getItem('activeOptionIdx');
+    const parsedActiveOptionIdx = JSON.parse(activeOptionIdx);
+
+    if (parsedActiveOptionIdx) {
+      this.setState({ activeOptionIdx: parsedActiveOptionIdx });
+    }
   }
 
   componentDidUpdate(prevState) {
     const { arrayChoiseColorPicker } = this.state;
-
+    const { activeOptionIdx } = this.state;
     if (arrayChoiseColorPicker !== prevState.arrayChoiseColorPicker) {
       console.log('arrayChoiseColorPicker were updated');
       localStorage.setItem('arrayChoiseColorPicker', JSON.stringify(arrayChoiseColorPicker));
+    }
+    if (activeOptionIdx !== prevState.activeOptionIdx) {
+      localStorage.setItem('activeOptionIdx', JSON.stringify(activeOptionIdx));
     }
   }
 
