@@ -5,6 +5,28 @@ export class ColorPicker extends Component {
     activeOptionIdx: 0,
     arrayChoiseColorPicker: [],
   };
+  componentDidMount() {
+    const arrayChoiseColorPicker = localStorage.getItem('arrayChoiseColorPicker');
+    const parsedColorPicker = JSON.parse(arrayChoiseColorPicker);
+
+    if (parsedColorPicker) {
+      this.setState({ arrayChoiseColorPicker: parsedColorPicker });
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    const { arrayChoiseColorPicker } = this.state;
+
+    if (arrayChoiseColorPicker !== prevState.arrayChoiseColorPicker) {
+      console.log('arrayChoiseColorPicker were updated');
+      localStorage.setItem('arrayChoiseColorPicker', JSON.stringify(arrayChoiseColorPicker));
+    }
+  }
+
+
+
+
+
 
   getArrayWithIniqValue = arrayNumbers => [...new Set(arrayNumbers)];
 
@@ -21,6 +43,7 @@ export class ColorPicker extends Component {
       };
     });
   };
+
   setDelIdx = index => {
     const filteredColorPicker = this.state.arrayChoiseColorPicker.filter(
       el => el !== index
