@@ -21,7 +21,16 @@ export class ColorPicker extends Component {
       };
     });
   };
-
+  setDelIdx = index => {
+    const filteredColorPicker = this.state.arrayChoiseColorPicker.filter(
+      el => el !== index
+    );
+    this.setState(prevState => {
+      return { ...prevState, arrayChoiseColorPicker: [...filteredColorPicker] };
+    });
+  };
+  
+      
   makeOptionClassName = index => {
     return index === this.state.activeOptionIdx
       ? styles.activeOption
@@ -65,6 +74,7 @@ export class ColorPicker extends Component {
               aria-label={options[index].label}
               className={styles.option}
               style={{ backgroundColor: options[index].color }}
+              onClick={() => this.setDelIdx(index)}
             ></button>
           ))}
         </div>
